@@ -69,11 +69,13 @@
             text-align: center;
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
         }
 
         .product:hover {
             transform: translateY(-5px);
+            box-shadow: 0 7px 18px rgba(0,0,0,0.12);
         }
 
         .product h3 {
@@ -83,6 +85,50 @@
 
         .icon {
             font-size: 40px;
+        }
+
+        .category-title {
+            text-align: center;
+            color: #1f7a4d;
+            margin-bottom: 20px;
+        }
+
+        .item-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .item-card .item-icon {
+            font-size: 35px;
+        }
+
+        .item-card h3 {
+            margin: 8px 0;
+            color: #1f7a4d;
+        }
+
+        .item-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .back-button {
+            display: block;
+            margin: 0 auto 25px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #1f7a4d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #155c39;
         }
 
         .hours,
@@ -106,6 +152,10 @@
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 600px) {
@@ -133,63 +183,215 @@
 
     <main class="container">
 
-        <section class="welcome">
-            <h2>Welcome to Our Store</h2>
-            <p>
-                We provide groceries, daily use products and household items
-                at reasonable prices.
-            </p>
-        </section>
+        <!-- HOME / CATEGORIES -->
 
-        <section>
-            <h2>Our Products</h2>
+        <div id="homePage">
 
-            <div class="products">
+            <section class="welcome">
+                <h2>Welcome to Our Store</h2>
+                <p>
+                    We provide groceries, daily use products and household items
+                    at reasonable prices.
+                </p>
+            </section>
 
-                <div class="product">
-                    <div class="icon">🛒</div>
-                    <h3>Groceries</h3>
+            <section>
+                <h2>Our Products</h2>
+
+                <div class="products">
+
+                    <div class="product" onclick="showCategory('groceries')">
+                        <div class="icon">🛒</div>
+                        <h3>Groceries</h3>
+                    </div>
+
+                    <div class="product" onclick="showCategory('dairy')">
+                        <div class="icon">🥛</div>
+                        <h3>Dairy Products</h3>
+                    </div>
+
+                    <div class="product" onclick="showCategory('snacks')">
+                        <div class="icon">🥤</div>
+                        <h3>Snacks & Beverages</h3>
+                    </div>
+
+                    <div class="product" onclick="showCategory('household')">
+                        <div class="icon">🏠</div>
+                        <h3>Household Items</h3>
+                    </div>
+
+                    <div class="product" onclick="showCategory('personal')">
+                        <div class="icon">🧴</div>
+                        <h3>Personal Care Products</h3>
+                    </div>
+
                 </div>
+            </section>
 
-                <div class="product">
-                    <div class="icon">🥛</div>
-                    <h3>Dairy Products</h3>
-                </div>
+            <section class="hours">
+                <h2>Opening Hours</h2>
+                <p>
+                    <strong>Monday to Sunday:</strong> 8 AM to 10 PM
+                </p>
+            </section>
 
-                <div class="product">
-                    <div class="icon">🥤</div>
-                    <h3>Snacks & Beverages</h3>
-                </div>
+            <section class="contact">
+                <h2>Contact Us</h2>
+                <p>
+                    <strong>Phone:</strong>
+                    YOUR 10-DIGIT PHONE NUMBER
+                </p>
 
-                <div class="product">
-                    <div class="icon">🏠</div>
-                    <h3>Household Items</h3>
-                </div>
+                <p>
+                    <strong>Address:</strong>
+                    YOUR SHOP ADDRESS
+                </p>
+            </section>
 
-                <div class="product">
-                    <div class="icon">🧴</div>
-                    <h3>Personal Care Products</h3>
-                </div>
+        </div>
 
-            </div>
-        </section>
 
-        <section class="hours">
-            <h2>Opening Hours</h2>
-            <p><strong>Monday to Sunday:</strong> 8 AM to 10 PM</p>
-        </section>
+        <!-- CATEGORY PRODUCTS -->
 
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <p><strong>Phone:</strong> YOUR 10-DIGIT PHONE NUMBER</p>
-            <p><strong>Address:</strong> YOUR SHOP ADDRESS</p>
-        </section>
+        <div id="categoryPage" class="hidden">
+
+            <button class="back-button" onclick="goBack()">
+                ← Back to Categories
+            </button>
+
+            <h2 id="categoryTitle" class="category-title"></h2>
+
+            <div id="categoryProducts" class="products"></div>
+
+        </div>
 
     </main>
+
 
     <footer>
         <p>© 2026 My General Store. All Rights Reserved.</p>
     </footer>
+
+
+    <script>
+
+        const categoryData = {
+
+            groceries: {
+                title: "Groceries",
+                products: [
+                    { icon: "🍚", name: "Rice", description: "Daily use rice" },
+                    { icon: "🌾", name: "Wheat Flour", description: "Fresh wheat flour" },
+                    { icon: "🍬", name: "Sugar", description: "Quality sugar" },
+                    { icon: "🫗", name: "Cooking Oil", description: "Cooking oil" },
+                    { icon: "🧂", name: "Salt", description: "Table salt" },
+                    { icon: "🌶️", name: "Spices", description: "Fresh spices" }
+                ]
+            },
+
+            dairy: {
+                title: "Dairy Products",
+                products: [
+                    { icon: "🥛", name: "Milk", description: "Fresh milk" },
+                    { icon: "🧈", name: "Butter", description: "Creamy butter" },
+                    { icon: "🧀", name: "Cheese", description: "Fresh cheese" },
+                    { icon: "🥣", name: "Curd", description: "Fresh curd" },
+                    { icon: "🍦", name: "Ice Cream", description: "Delicious ice cream" }
+                ]
+            },
+
+            snacks: {
+                title: "Snacks & Beverages",
+                products: [
+                    { icon: "🍪", name: "Biscuits", description: "Tasty biscuits" },
+                    { icon: "🍟", name: "Chips", description: "Crispy snacks" },
+                    { icon: "🥤", name: "Cold Drinks", description: "Refreshing beverages" },
+                    { icon: "🧃", name: "Juice", description: "Refreshing juice" },
+                    { icon: "☕", name: "Tea & Coffee", description: "Tea and coffee" },
+                    { icon: "🍫", name: "Chocolates", description: "Delicious chocolates" }
+                ]
+            },
+
+            household: {
+                title: "Household Items",
+                products: [
+                    { icon: "🧼", name: "Soap", description: "Household soap" },
+                    { icon: "🧹", name: "Broom", description: "Cleaning broom" },
+                    { icon: "🧽", name: "Sponge", description: "Cleaning sponge" },
+                    { icon: "🪣", name: "Bucket", description: "Household bucket" },
+                    { icon: "🧴", name: "Detergent", description: "Laundry detergent" },
+                    { icon: "🧻", name: "Tissues", description: "Soft tissues" }
+                ]
+            },
+
+            personal: {
+                title: "Personal Care Products",
+                products: [
+                    { icon: "🪥", name: "Toothpaste", description: "Daily toothpaste" },
+                    { icon: "🧴", name: "Shampoo", description: "Hair shampoo" },
+                    { icon: "🧼", name: "Face Wash", description: "Face wash" },
+                    { icon: "🪒", name: "Shaving Products", description: "Shaving essentials" },
+                    { icon: "🧴", name: "Body Lotion", description: "Body care lotion" },
+                    { icon: "🪮", name: "Comb", description: "Hair comb" }
+                ]
+            }
+
+        };
+
+
+        function showCategory(category) {
+
+            const data = categoryData[category];
+
+            document.getElementById("homePage").classList.add("hidden");
+
+            document.getElementById("categoryPage").classList.remove("hidden");
+
+            document.getElementById("categoryTitle").textContent = data.title;
+
+            const productContainer =
+                document.getElementById("categoryProducts");
+
+            productContainer.innerHTML = "";
+
+            data.products.forEach(function(product) {
+
+                const card = document.createElement("div");
+
+                card.className = "item-card";
+
+                card.innerHTML = `
+                    <div class="item-icon">${product.icon}</div>
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                `;
+
+                productContainer.appendChild(card);
+
+            });
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        function goBack() {
+
+            document.getElementById("categoryPage")
+                .classList.add("hidden");
+
+            document.getElementById("homePage")
+                .classList.remove("hidden");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+    </script>
 
 </body>
 </html>
