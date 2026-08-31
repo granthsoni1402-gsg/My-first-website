@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +32,7 @@ header h1 {
 }
 
 header p {
+    margin: 8px 0 0;
     font-size: 18px;
 }
 
@@ -44,69 +44,82 @@ header p {
 
 .welcome {
     background: white;
-    padding: 30px;
     text-align: center;
+    padding: 30px;
     border-radius: 15px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .welcome h2 {
     color: #1f7a4d;
+    margin-top: 0;
 }
 
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 20px;
 }
 
 .card {
     background: white;
-    border-radius: 15px;
-    padding: 20px;
+    padding: 18px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
     cursor: pointer;
-    transition: .2s;
 }
 
 .card:hover {
     transform: translateY(-5px);
 }
 
-.big-icon {
-    font-size: 55px;
-}
-
 .card h3 {
     color: #1f7a4d;
+    margin-bottom: 8px;
+}
+
+.category-image {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #f7f7f7;
+    margin-bottom: 10px;
 }
 
 .product-image {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: contain;
     border-radius: 12px;
     background: #f7f7f7;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .price {
+    color: #1f7a4d;
     font-size: 20px;
     font-weight: bold;
-    color: #1f7a4d;
     margin-top: 10px;
+}
+
+.category-title {
+    text-align: center;
+    color: #1f7a4d;
+    margin-bottom: 25px;
 }
 
 .back-button {
     display: block;
     margin: 0 auto 25px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
     background: #1f7a4d;
     color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -122,27 +135,32 @@ header p {
 .info-box {
     background: white;
     padding: 25px;
-    border-radius: 15px;
     margin-top: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .info-box h2 {
     color: #1f7a4d;
+    margin-top: 0;
 }
 
 footer {
-    margin-top: 40px;
-    padding: 20px;
     background: #1f7a4d;
     color: white;
     text-align: center;
+    padding: 20px;
+    margin-top: 40px;
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
 
     header h1 {
         font-size: 32px;
+    }
+
+    header p {
+        font-size: 16px;
     }
 
     .container {
@@ -150,7 +168,7 @@ footer {
     }
 
     .product-image {
-        height: 150px;
+        height: 160px;
     }
 
 }
@@ -159,6 +177,7 @@ footer {
 </head>
 
 <body>
+
 
 <header>
 
@@ -192,14 +211,21 @@ footer {
 
     <div class="products">
 
+
         <div class="card"
              onclick="showCategory('groceries')">
 
-            <div class="big-icon">🛒</div>
+            <img
+                class="category-image"
+                src="./images/groceries.webp"
+                alt="Groceries"
+            >
 
             <h3>Groceries</h3>
 
-            <p>Rice, flour, sugar, oil, salt & spices</p>
+            <p>
+                Rice, flour, sugar, oil, salt & spices
+            </p>
 
         </div>
 
@@ -207,11 +233,17 @@ footer {
         <div class="card"
              onclick="showCategory('dairy')">
 
-            <div class="big-icon">🥛</div>
+            <img
+                class="category-image"
+                src="./images/dairy.webp"
+                alt="Dairy Products"
+            >
 
             <h3>Dairy Products</h3>
 
-            <p>Milk, butter, cheese & curd</p>
+            <p>
+                Milk, butter, cheese & curd
+            </p>
 
         </div>
 
@@ -219,11 +251,17 @@ footer {
         <div class="card"
              onclick="showCategory('snacks')">
 
-            <div class="big-icon">🥤</div>
+            <img
+                class="category-image"
+                src="./images/snacks.webp"
+                alt="Snacks and Beverages"
+            >
 
             <h3>Snacks & Beverages</h3>
 
-            <p>Biscuits, chips, juice & chocolates</p>
+            <p>
+                Biscuits, chips, juice & chocolates
+            </p>
 
         </div>
 
@@ -231,11 +269,17 @@ footer {
         <div class="card"
              onclick="showCategory('household')">
 
-            <div class="big-icon">🏠</div>
+            <img
+                class="category-image"
+                src="./images/household.webp"
+                alt="Household Items"
+            >
 
             <h3>Household Items</h3>
 
-            <p>Cleaning and household products</p>
+            <p>
+                Cleaning and daily-use products
+            </p>
 
         </div>
 
@@ -243,11 +287,17 @@ footer {
         <div class="card"
              onclick="showCategory('personal')">
 
-            <div class="big-icon">🧴</div>
+            <img
+                class="category-image"
+                src="./images/personal-care.webp"
+                alt="Personal Care"
+            >
 
             <h3>Personal Care</h3>
 
-            <p>Toothpaste, shampoo, face wash & lotion</p>
+            <p>
+                Toothpaste, shampoo, face wash & lotion
+            </p>
 
         </div>
 
@@ -288,21 +338,24 @@ footer {
 
 <div id="categoryPage" class="hidden">
 
-    <button class="back-button"
-            onclick="goHome()">
+    <button
+        class="back-button"
+        onclick="goHome()">
 
         ← Back to Categories
 
     </button>
 
 
-    <h2 id="categoryTitle"
+    <h2
+        id="categoryTitle"
         class="category-title">
     </h2>
 
 
-    <div id="categoryProducts"
-         class="products">
+    <div
+        id="categoryProducts"
+        class="products">
     </div>
 
 </div>
@@ -322,6 +375,7 @@ footer {
 
 <script>
 
+
 const storeData = {
 
 
@@ -333,32 +387,32 @@ products: [
 
 {
 name: "Rice",
-description: "Quality rice varieties",
+description: "Different types of rice",
 
 varieties: [
 
 {
 name: "Basmati Rice",
 price: "₹120/kg",
-image: "images/basmati-rice.png"
+image: "./images/basmati-rice.webp"
 },
 
 {
 name: "Kolam Rice",
 price: "₹75/kg",
-image: "images/kolam-rice.png"
+image: "./images/kolam-rice.webp"
 },
 
 {
 name: "Sona Masoori Rice",
 price: "₹70/kg",
-image: "images/sona-masoori-rice.png"
+image: "./images/sona-masoori-rice.webp"
 },
 
 {
 name: "Brown Rice",
 price: "₹110/kg",
-image: "images/brown-rice.png"
+image: "./images/brown-rice.webp"
 }
 
 ]
@@ -368,32 +422,32 @@ image: "images/brown-rice.png"
 
 {
 name: "Wheat Flour",
-description: "Different flour varieties",
+description: "Different types of flour",
 
 varieties: [
 
 {
 name: "Whole Wheat Atta",
 price: "₹55/kg",
-image: "images/wheat-atta.png"
+image: "./images/wheat-atta.webp"
 },
 
 {
 name: "Multigrain Atta",
 price: "₹75/kg",
-image: "images/multigrain-atta.png"
+image: "./images/multigrain-atta.webp"
 },
 
 {
 name: "Jowar Flour",
 price: "₹80/kg",
-image: "images/jowar-flour.png"
+image: "./images/jowar-flour.webp"
 },
 
 {
 name: "Bajra Flour",
 price: "₹65/kg",
-image: "images/bajra-flour.png"
+image: "./images/bajra-flour.webp"
 }
 
 ]
@@ -403,26 +457,26 @@ image: "images/bajra-flour.png"
 
 {
 name: "Sugar",
-description: "Sugar products",
+description: "Different sugar products",
 
 varieties: [
 
 {
 name: "White Sugar",
 price: "₹50/kg",
-image: "images/white-sugar.png"
+image: "./images/white-sugar.webp"
 },
 
 {
 name: "Brown Sugar",
 price: "₹100/kg",
-image: "images/brown-sugar.png"
+image: "./images/brown-sugar.webp"
 },
 
 {
 name: "Powdered Sugar",
 price: "₹60/kg",
-image: "images/powdered-sugar.png"
+image: "./images/powdered-sugar.webp"
 }
 
 ]
@@ -432,32 +486,32 @@ image: "images/powdered-sugar.png"
 
 {
 name: "Cooking Oil",
-description: "Cooking oils",
+description: "Cooking oil varieties",
 
 varieties: [
 
 {
 name: "Sunflower Oil",
 price: "₹160/litre",
-image: "images/sunflower-oil.png"
+image: "./images/sunflower-oil.webp"
 },
 
 {
 name: "Soybean Oil",
 price: "₹145/litre",
-image: "images/soybean-oil.png"
+image: "./images/soybean-oil.webp"
 },
 
 {
 name: "Groundnut Oil",
 price: "₹190/litre",
-image: "images/groundnut-oil.png"
+image: "./images/groundnut-oil.webp"
 },
 
 {
 name: "Mustard Oil",
 price: "₹175/litre",
-image: "images/mustard-oil.png"
+image: "./images/mustard-oil.webp"
 }
 
 ]
@@ -474,19 +528,19 @@ varieties: [
 {
 name: "Iodized Salt",
 price: "₹25/kg",
-image: "images/iodized-salt.png"
+image: "./images/iodized-salt.webp"
 },
 
 {
 name: "Rock Salt",
 price: "₹50/kg",
-image: "images/rock-salt.png"
+image: "./images/rock-salt.webp"
 },
 
 {
 name: "Table Salt",
 price: "₹22/kg",
-image: "images/table-salt.png"
+image: "./images/table-salt.webp"
 }
 
 ]
@@ -503,25 +557,25 @@ varieties: [
 {
 name: "Turmeric Powder",
 price: "₹220/kg",
-image: "images/turmeric.png"
+image: "./images/turmeric.webp"
 },
 
 {
 name: "Red Chilli Powder",
 price: "₹260/kg",
-image: "images/chilli-powder.png"
+image: "./images/chilli-powder.webp"
 },
 
 {
 name: "Cumin Powder",
 price: "₹320/kg",
-image: "images/cumin-powder.png"
+image: "./images/cumin-powder.webp"
 },
 
 {
 name: "Garam Masala",
 price: "₹300/kg",
-image: "images/garam-masala.png"
+image: "./images/garam-masala.webp"
 }
 
 ]
@@ -549,13 +603,13 @@ varieties: [
 {
 name: "Full Cream Milk",
 price: "₹68/litre",
-image: "images/full-cream-milk.png"
+image: "./images/full-cream-milk.webp"
 },
 
 {
 name: "Toned Milk",
 price: "₹58/litre",
-image: "images/toned-milk.png"
+image: "./images/toned-milk.webp"
 }
 
 ]
@@ -565,20 +619,20 @@ image: "images/toned-milk.png"
 
 {
 name: "Butter",
-description: "Fresh butter",
+description: "Fresh butter products",
 
 varieties: [
 
 {
 name: "Salted Butter",
 price: "₹58/100g",
-image: "images/salted-butter.png"
+image: "./images/salted-butter.webp"
 },
 
 {
 name: "Unsalted Butter",
 price: "₹60/100g",
-image: "images/unsalted-butter.png"
+image: "./images/unsalted-butter.webp"
 }
 
 ]
@@ -595,13 +649,13 @@ varieties: [
 {
 name: "Cheese Slices",
 price: "₹120/200g",
-image: "images/cheese-slices.png"
+image: "./images/cheese-slices.webp"
 },
 
 {
 name: "Cheese Block",
 price: "₹150/200g",
-image: "images/cheese-block.png"
+image: "./images/cheese-block.webp"
 }
 
 ]
@@ -611,20 +665,20 @@ image: "images/cheese-block.png"
 
 {
 name: "Curd",
-description: "Fresh curd",
+description: "Fresh curd products",
 
 varieties: [
 
 {
 name: "Plain Curd",
 price: "₹40/400g",
-image: "images/plain-curd.png"
+image: "./images/plain-curd.webp"
 },
 
 {
 name: "Low Fat Curd",
 price: "₹45/400g",
-image: "images/low-fat-curd.png"
+image: "./images/low-fat-curd.webp"
 }
 
 ]
@@ -652,19 +706,19 @@ varieties: [
 {
 name: "Cream Biscuits",
 price: "₹30/pack",
-image: "images/cream-biscuits.png"
+image: "./images/cream-biscuits.webp"
 },
 
 {
 name: "Glucose Biscuits",
 price: "₹30/pack",
-image: "images/glucose-biscuits.png"
+image: "./images/glucose-biscuits.webp"
 },
 
 {
 name: "Cookies",
 price: "₹50/pack",
-image: "images/cookies.png"
+image: "./images/cookies.webp"
 }
 
 ]
@@ -681,19 +735,19 @@ varieties: [
 {
 name: "Potato Chips",
 price: "₹20/pack",
-image: "images/potato-chips.png"
+image: "./images/potato-chips.webp"
 },
 
 {
 name: "Masala Chips",
 price: "₹20/pack",
-image: "images/masala-chips.png"
+image: "./images/masala-chips.webp"
 },
 
 {
 name: "Nachos",
 price: "₹40/pack",
-image: "images/nachos.png"
+image: "./images/nachos.webp"
 }
 
 ]
@@ -710,19 +764,19 @@ varieties: [
 {
 name: "Mango Juice",
 price: "₹40/pack",
-image: "images/mango-juice.png"
+image: "./images/mango-juice.webp"
 },
 
 {
 name: "Orange Juice",
 price: "₹40/pack",
-image: "images/orange-juice.png"
+image: "./images/orange-juice.webp"
 },
 
 {
 name: "Mixed Fruit Juice",
 price: "₹45/pack",
-image: "images/mixed-fruit-juice.png"
+image: "./images/mixed-fruit-juice.webp"
 }
 
 ]
@@ -739,13 +793,13 @@ varieties: [
 {
 name: "Milk Chocolate",
 price: "₹40",
-image: "images/milk-chocolate.png"
+image: "./images/milk-chocolate.webp"
 },
 
 {
 name: "Dark Chocolate",
 price: "₹80",
-image: "images/dark-chocolate.png"
+image: "./images/dark-chocolate.webp"
 }
 
 ]
@@ -773,13 +827,13 @@ varieties: [
 {
 name: "Dish Soap",
 price: "₹45",
-image: "images/dish-soap.png"
+image: "./images/dish-soap.webp"
 },
 
 {
 name: "Laundry Soap",
 price: "₹30",
-image: "images/laundry-soap.png"
+image: "./images/laundry-soap.webp"
 }
 
 ]
@@ -796,13 +850,13 @@ varieties: [
 {
 name: "Floor Broom",
 price: "₹90",
-image: "images/floor-broom.png"
+image: "./images/floor-broom.webp"
 },
 
 {
 name: "Outdoor Broom",
 price: "₹120",
-image: "images/outdoor-broom.png"
+image: "./images/outdoor-broom.webp"
 }
 
 ]
@@ -819,13 +873,13 @@ varieties: [
 {
 name: "Plastic Bucket",
 price: "₹150",
-image: "images/plastic-bucket.png"
+image: "./images/plastic-bucket.webp"
 },
 
 {
 name: "Small Bucket",
 price: "₹100",
-image: "images/small-bucket.png"
+image: "./images/small-bucket.webp"
 }
 
 ]
@@ -842,13 +896,13 @@ varieties: [
 {
 name: "Washing Powder",
 price: "₹120/kg",
-image: "images/washing-powder.png"
+image: "./images/washing-powder.webp"
 },
 
 {
 name: "Liquid Detergent",
 price: "₹160/litre",
-image: "images/liquid-detergent.png"
+image: "./images/liquid-detergent.webp"
 }
 
 ]
@@ -876,13 +930,13 @@ varieties: [
 {
 name: "Regular Toothpaste",
 price: "₹55",
-image: "images/toothpaste.png"
+image: "./images/toothpaste.webp"
 },
 
 {
 name: "Herbal Toothpaste",
 price: "₹70",
-image: "images/herbal-toothpaste.png"
+image: "./images/herbal-toothpaste.webp"
 }
 
 ]
@@ -899,13 +953,13 @@ varieties: [
 {
 name: "Daily Use Shampoo",
 price: "₹120",
-image: "images/shampoo.png"
+image: "./images/shampoo.webp"
 },
 
 {
 name: "Anti-Dandruff Shampoo",
 price: "₹160",
-image: "images/anti-dandruff-shampoo.png"
+image: "./images/anti-dandruff-shampoo.webp"
 }
 
 ]
@@ -922,13 +976,13 @@ varieties: [
 {
 name: "Gel Face Wash",
 price: "₹150",
-image: "images/gel-face-wash.png"
+image: "./images/gel-face-wash.webp"
 },
 
 {
 name: "Herbal Face Wash",
 price: "₹140",
-image: "images/herbal-face-wash.png"
+image: "./images/herbal-face-wash.webp"
 }
 
 ]
@@ -945,13 +999,13 @@ varieties: [
 {
 name: "Moisturizing Lotion",
 price: "₹150",
-image: "images/body-lotion.png"
+image: "./images/body-lotion.webp"
 },
 
 {
 name: "Daily Body Lotion",
 price: "₹120",
-image: "images/daily-body-lotion.png"
+image: "./images/daily-body-lotion.webp"
 }
 
 ]
@@ -996,17 +1050,11 @@ function showCategory(category) {
         card.className = "card";
 
         card.onclick = function() {
-
             showVarieties(category, index);
-
         };
 
 
         card.innerHTML = `
-
-            <div class="big-icon">
-                🛍️
-            </div>
 
             <h3>
                 ${product.name}
@@ -1027,7 +1075,8 @@ function showCategory(category) {
 
     });
 
-    window.scrollTo(0,0);
+
+    window.scrollTo(0, 0);
 }
 
 
@@ -1062,15 +1111,12 @@ function showVarieties(category, index) {
                 class="product-image"
                 src="${item.image}"
                 alt="${item.name}"
+                loading="lazy"
             >
 
             <h3>
                 ${item.name}
             </h3>
-
-            <p>
-                ${product.description}
-            </p>
 
             <div class="price">
                 ${item.price}
@@ -1084,7 +1130,7 @@ function showVarieties(category, index) {
     });
 
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 }
 
 
@@ -1099,8 +1145,9 @@ function goHome() {
         .getElementById("homePage")
         .classList.remove("hidden");
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 }
+
 
 </script>
 
