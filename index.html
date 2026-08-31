@@ -1,759 +1,1108 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My General Store</title>
+<title>My General Store</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7f6;
-            color: #222;
-            line-height: 1.6;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: #1f7a4d;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+    color: #222;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 42px;
-        }
+header {
+    background: #1f7a4d;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
 
-        header p {
-            margin-top: 8px;
-            font-size: 18px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 42px;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px 20px;
-        }
+header p {
+    font-size: 18px;
+}
 
-        .welcome {
-            background: white;
-            text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
 
-        .welcome h2 {
-            color: #1f7a4d;
-            margin-top: 0;
-        }
+.welcome {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+.welcome h2 {
+    color: #1f7a4d;
+}
 
-        .product {
-            background: white;
-            padding: 25px 15px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
 
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 18px rgba(0,0,0,0.12);
-        }
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    cursor: pointer;
+    transition: .2s;
+}
 
-        .product h3 {
-            margin: 10px 0 0;
-            color: #1f7a4d;
-        }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-        .icon {
-            font-size: 40px;
-        }
+.big-icon {
+    font-size: 55px;
+}
 
-        .category-title {
-            text-align: center;
-            color: #1f7a4d;
-            margin-bottom: 20px;
-        }
+.card h3 {
+    color: #1f7a4d;
+}
 
-        .item-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #f7f7f7;
+    margin-bottom: 12px;
+}
 
-        .item-card:hover {
-            transform: translateY(-4px);
-        }
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f7a4d;
+    margin-top: 10px;
+}
 
-        .item-card .item-icon {
-            font-size: 35px;
-        }
+.back-button {
+    display: block;
+    margin: 0 auto 25px;
+    background: #1f7a4d;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        .item-card h3 {
-            margin: 8px 0;
-            color: #1f7a4d;
-        }
+.back-button:hover {
+    background: #155c39;
+}
 
-        .item-card p {
-            margin: 5px 0;
-            color: #555;
-        }
+.hidden {
+    display: none;
+}
 
-        .back-button {
-            display: block;
-            margin: 0 auto 25px;
-            padding: 12px 22px;
-            border: none;
-            border-radius: 8px;
-            background: #1f7a4d;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.info-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
 
-        .back-button:hover {
-            background: #155c39;
-        }
+.info-box h2 {
+    color: #1f7a4d;
+}
 
-        .hours,
-        .contact {
-            background: white;
-            padding: 25px;
-            margin-top: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #1f7a4d;
+    color: white;
+    text-align: center;
+}
 
-        .hours h2,
-        .contact h2 {
-            color: #1f7a4d;
-            margin-top: 0;
-        }
+@media(max-width:600px) {
 
-        .hidden {
-            display: none;
-        }
+    header h1 {
+        font-size: 32px;
+    }
 
-        footer {
-            background: #1f7a4d;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+    .container {
+        padding: 20px 15px;
+    }
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 32px;
-            }
+    .product-image {
+        height: 150px;
+    }
 
-            header p {
-                font-size: 16px;
-            }
+}
 
-            .container {
-                padding: 20px 15px;
-            }
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>My General Store</h1>
-        <p>Your Trusted Local Store</p>
-    </header>
+<header>
 
-    <main class="container">
+    <h1>My General Store</h1>
 
-        <div id="homePage">
+    <p>Your Trusted Local Store</p>
 
-            <section class="welcome">
-                <h2>Welcome to Our Store</h2>
+</header>
 
-                <p>
-                    We provide groceries, daily use products and household items
-                    at reasonable prices.
-                </p>
-            </section>
 
-            <section>
-                <h2>Our Products</h2>
+<main class="container">
 
-                <div class="products">
 
-                    <div class="product" onclick="showCategory('groceries')">
-                        <div class="icon">🛒</div>
-                        <h3>Groceries</h3>
-                    </div>
+<div id="homePage">
 
-                    <div class="product" onclick="showCategory('dairy')">
-                        <div class="icon">🥛</div>
-                        <h3>Dairy Products</h3>
-                    </div>
+    <section class="welcome">
 
-                    <div class="product" onclick="showCategory('snacks')">
-                        <div class="icon">🥤</div>
-                        <h3>Snacks & Beverages</h3>
-                    </div>
+        <h2>Welcome to Our Store</h2>
 
-                    <div class="product" onclick="showCategory('household')">
-                        <div class="icon">🏠</div>
-                        <h3>Household Items</h3>
-                    </div>
+        <p>
+            We provide groceries, dairy products,
+            snacks, household items and personal care products
+            at reasonable prices.
+        </p>
 
-                    <div class="product" onclick="showCategory('personal')">
-                        <div class="icon">🧴</div>
-                        <h3>Personal Care Products</h3>
-                    </div>
+    </section>
 
-                </div>
-            </section>
 
-            <section class="hours">
-                <h2>Opening Hours</h2>
-                <p>
-                    <strong>Monday to Sunday:</strong> 8 AM to 10 PM
-                </p>
-            </section>
+    <h2>Our Products</h2>
 
-            <section class="contact">
-                <h2>Contact Us</h2>
 
-                <p>
-                    <strong>Phone:</strong>
-                    YOUR 10-DIGIT PHONE NUMBER
-                </p>
+    <div class="products">
 
-                <p>
-                    <strong>Address:</strong>
-                    YOUR SHOP ADDRESS
-                </p>
-            </section>
+        <div class="card"
+             onclick="showCategory('groceries')">
+
+            <div class="big-icon">🛒</div>
+
+            <h3>Groceries</h3>
+
+            <p>Rice, flour, sugar, oil, salt & spices</p>
 
         </div>
 
-        <div id="categoryPage" class="hidden">
 
-            <button class="back-button" onclick="goBack()">
-                ← Back to Categories
-            </button>
+        <div class="card"
+             onclick="showCategory('dairy')">
 
-            <h2 id="categoryTitle" class="category-title"></h2>
+            <div class="big-icon">🥛</div>
 
-            <div id="categoryProducts" class="products"></div>
+            <h3>Dairy Products</h3>
+
+            <p>Milk, butter, cheese & curd</p>
 
         </div>
 
-    </main>
 
-    <footer>
-        <p>© 2026 My General Store. All Rights Reserved.</p>
-    </footer>
-    <script>
+        <div class="card"
+             onclick="showCategory('snacks')">
 
-        const storeData = {
+            <div class="big-icon">🥤</div>
 
-            groceries: {
-                title: "Groceries",
-                products: [
+            <h3>Snacks & Beverages</h3>
 
-                    {
-                        name: "Rice",
-                        icon: "🍚",
-                        description: "Different varieties of rice",
-                        subProducts: [
-                            "Basmati Rice",
-                            "Kolam Rice",
-                            "Sona Masoori Rice",
-                            "Brown Rice"
-                        ]
-                    },
+            <p>Biscuits, chips, juice & chocolates</p>
 
-                    {
-                        name: "Wheat Flour",
-                        icon: "🌾",
-                        description: "Fresh and quality wheat flour",
-                        subProducts: [
-                            "Whole Wheat Atta",
-                            "Multigrain Atta",
-                            "Jowar Flour",
-                            "Bajra Flour"
-                        ]
-                    },
-
-                    {
-                        name: "Sugar",
-                        icon: "🍬",
-                        description: "Quality sugar products",
-                        subProducts: [
-                            "White Sugar",
-                            "Brown Sugar",
-                            "Powdered Sugar"
-                        ]
-                    },
-
-                    {
-                        name: "Cooking Oil",
-                        icon: "🫗",
-                        description: "Cooking oils for everyday use",
-                        subProducts: [
-                            "Sunflower Oil",
-                            "Soybean Oil",
-                            "Groundnut Oil",
-                            "Mustard Oil"
-                        ]
-                    },
-
-                    {
-                        name: "Salt",
-                        icon: "🧂",
-                        description: "Different types of salt",
-                        subProducts: [
-                            "Table Salt",
-                            "Iodized Salt",
-                            "Rock Salt"
-                        ]
-                    },
-
-                    {
-                        name: "Spices",
-                        icon: "🌶️",
-                        description: "Fresh spices for cooking",
-                        subProducts: [
-                            "Turmeric Powder",
-                            "Red Chilli Powder",
-                            "Cumin Powder",
-                            "Garam Masala"
-                        ]
-                    }
-
-                ]
-            },
+        </div>
 
 
-            dairy: {
-                title: "Dairy Products",
-                products: [
+        <div class="card"
+             onclick="showCategory('household')">
 
-                    {
-                        name: "Milk",
-                        icon: "🥛",
-                        description: "Fresh milk products",
-                        subProducts: [
-                            "Full Cream Milk",
-                            "Toned Milk",
-                            "Low Fat Milk"
-                        ]
-                    },
+            <div class="big-icon">🏠</div>
 
-                    {
-                        name: "Butter",
-                        icon: "🧈",
-                        description: "Fresh and creamy butter",
-                        subProducts: [
-                            "Salted Butter",
-                            "Unsalted Butter"
-                        ]
-                    },
+            <h3>Household Items</h3>
 
-                    {
-                        name: "Cheese",
-                        icon: "🧀",
-                        description: "Different cheese products",
-                        subProducts: [
-                            "Cheese Slices",
-                            "Cheese Block",
-                            "Cheese Spread"
-                        ]
-                    },
+            <p>Cleaning and household products</p>
 
-                    {
-                        name: "Curd",
-                        icon: "🥣",
-                        description: "Fresh curd",
-                        subProducts: [
-                            "Plain Curd",
-                            "Low Fat Curd"
-                        ]
-                    },
-
-                    {
-                        name: "Ice Cream",
-                        icon: "🍦",
-                        description: "Delicious ice cream",
-                        subProducts: [
-                            "Vanilla",
-                            "Chocolate",
-                            "Strawberry",
-                            "Mango"
-                        ]
-                    }
-
-                ]
-            },
+        </div>
 
 
-            snacks: {
-                title: "Snacks & Beverages",
-                products: [
+        <div class="card"
+             onclick="showCategory('personal')">
 
-                    {
-                        name: "Biscuits",
-                        icon: "🍪",
-                        description: "Tasty biscuits",
-                        subProducts: [
-                            "Cream Biscuits",
-                            "Glucose Biscuits",
-                            "Cookies",
-                            "Digestive Biscuits"
-                        ]
-                    },
+            <div class="big-icon">🧴</div>
 
-                    {
-                        name: "Chips",
-                        icon: "🍟",
-                        description: "Crispy snacks",
-                        subProducts: [
-                            "Potato Chips",
-                            "Masala Chips",
-                            "Banana Chips",
-                            "Nachos"
-                        ]
-                    },
+            <h3>Personal Care</h3>
 
-                    {
-                        name: "Cold Drinks",
-                        icon: "🥤",
-                        description: "Refreshing beverages",
-                        subProducts: [
-                            "Cola",
-                            "Lemon Drink",
-                            "Orange Drink",
-                            "Soda"
-                        ]
-                    },
+            <p>Toothpaste, shampoo, face wash & lotion</p>
 
-                    {
-                        name: "Juice",
-                        icon: "🧃",
-                        description: "Refreshing fruit drinks",
-                        subProducts: [
-                            "Mango Juice",
-                            "Orange Juice",
-                            "Apple Juice",
-                            "Mixed Fruit Juice"
-                        ]
-                    },
+        </div>
 
-                    {
-                        name: "Tea & Coffee",
-                        icon: "☕",
-                        description: "Tea and coffee products",
-                        subProducts: [
-                            "Tea",
-                            "Green Tea",
-                            "Instant Coffee",
-                            "Filter Coffee"
-                        ]
-                    },
-
-                    {
-                        name: "Chocolates",
-                        icon: "🍫",
-                        description: "Delicious chocolates",
-                        subProducts: [
-                            "Milk Chocolate",
-                            "Dark Chocolate",
-                            "Chocolate Bars"
-                        ]
-                    }
-
-                ]
-            },
+    </div>
 
 
-            household: {
-                title: "Household Items",
-                products: [
+    <div class="info-box">
 
-                    {
-                        name: "Soap",
-                        icon: "🧼",
-                        description: "Household cleaning soap",
-                        subProducts: [
-                            "Dish Soap",
-                            "Laundry Soap",
-                            "Cleaning Soap"
-                        ]
-                    },
+        <h2>Opening Hours</h2>
 
-                    {
-                        name: "Broom",
-                        icon: "🧹",
-                        description: "Cleaning brooms",
-                        subProducts: [
-                            "Floor Broom",
-                            "Soft Broom",
-                            "Outdoor Broom"
-                        ]
-                    },
+        <p>
+            <strong>Monday to Sunday:</strong>
+            8 AM to 10 PM
+        </p>
 
-                    {
-                        name: "Sponge",
-                        icon: "🧽",
-                        description: "Cleaning sponges",
-                        subProducts: [
-                            "Kitchen Sponge",
-                            "Scrubbing Sponge"
-                        ]
-                    },
-
-                    {
-                        name: "Bucket",
-                        icon: "🪣",
-                        description: "Household buckets",
-                        subProducts: [
-                            "Plastic Bucket",
-                            "Bathroom Bucket",
-                            "Small Bucket"
-                        ]
-                    },
-
-                    {
-                        name: "Detergent",
-                        icon: "🧴",
-                        description: "Laundry cleaning products",
-                        subProducts: [
-                            "Washing Powder",
-                            "Liquid Detergent",
-                            "Detergent Bar"
-                        ]
-                    },
-
-                    {
-                        name: "Tissues",
-                        icon: "🧻",
-                        description: "Soft tissues",
-                        subProducts: [
-                            "Facial Tissues",
-                            "Kitchen Tissues",
-                            "Toilet Tissues"
-                        ]
-                    }
-
-                ]
-            },
+    </div>
 
 
-            personal: {
-                title: "Personal Care Products",
-                products: [
+    <div class="info-box">
 
-                    {
-                        name: "Toothpaste",
-                        icon: "🪥",
-                        description: "Daily oral care products",
-                        subProducts: [
-                            "Regular Toothpaste",
-                            "Whitening Toothpaste",
-                            "Herbal Toothpaste"
-                        ]
-                    },
+        <h2>Contact Us</h2>
 
-                    {
-                        name: "Shampoo",
-                        icon: "🧴",
-                        description: "Hair care products",
-                        subProducts: [
-                            "Anti-Dandruff Shampoo",
-                            "Herbal Shampoo",
-                            "Daily Use Shampoo"
-                        ]
-                    },
+        <p>
+            <strong>Phone:</strong>
+            YOUR PHONE NUMBER
+        </p>
 
-                    {
-                        name: "Face Wash",
-                        icon: "🧼",
-                        description: "Face care products",
-                        subProducts: [
-                            "Foaming Face Wash",
-                            "Gel Face Wash",
-                            "Herbal Face Wash"
-                        ]
-                    },
+        <p>
+            <strong>Address:</strong>
+            YOUR SHOP ADDRESS
+        </p>
 
-                    {
-                        name: "Shaving Products",
-                        icon: "🪒",
-                        description: "Shaving essentials",
-                        subProducts: [
-                            "Shaving Cream",
-                            "Shaving Gel",
-                            "Razors"
-                        ]
-                    },
+    </div>
 
-                    {
-                        name: "Body Lotion",
-                        icon: "🧴",
-                        description: "Body care lotion",
-                        subProducts: [
-                            "Moisturizing Lotion",
-                            "Daily Body Lotion"
-                        ]
-                    },
+</div>
 
-                    {
-                        name: "Comb",
-                        icon: "🪮",
-                        description: "Hair combs",
-                        subProducts: [
-                            "Wide Tooth Comb",
-                            "Fine Tooth Comb",
-                            "Hair Brush"
-                        ]
-                    }
 
-                ]
-            }
+
+<div id="categoryPage" class="hidden">
+
+    <button class="back-button"
+            onclick="goHome()">
+
+        ← Back to Categories
+
+    </button>
+
+
+    <h2 id="categoryTitle"
+        class="category-title">
+    </h2>
+
+
+    <div id="categoryProducts"
+         class="products">
+    </div>
+
+</div>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 My General Store. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+const storeData = {
+
+
+groceries: {
+
+title: "Groceries",
+
+products: [
+
+{
+name: "Rice",
+description: "Quality rice varieties",
+
+varieties: [
+
+{
+name: "Basmati Rice",
+price: "₹120/kg",
+image: "images/basmati-rice.png"
+},
+
+{
+name: "Kolam Rice",
+price: "₹75/kg",
+image: "images/kolam-rice.png"
+},
+
+{
+name: "Sona Masoori Rice",
+price: "₹70/kg",
+image: "images/sona-masoori-rice.png"
+},
+
+{
+name: "Brown Rice",
+price: "₹110/kg",
+image: "images/brown-rice.png"
+}
+
+]
+
+},
+
+
+{
+name: "Wheat Flour",
+description: "Different flour varieties",
+
+varieties: [
+
+{
+name: "Whole Wheat Atta",
+price: "₹55/kg",
+image: "images/wheat-atta.png"
+},
+
+{
+name: "Multigrain Atta",
+price: "₹75/kg",
+image: "images/multigrain-atta.png"
+},
+
+{
+name: "Jowar Flour",
+price: "₹80/kg",
+image: "images/jowar-flour.png"
+},
+
+{
+name: "Bajra Flour",
+price: "₹65/kg",
+image: "images/bajra-flour.png"
+}
+
+]
+
+},
+
+
+{
+name: "Sugar",
+description: "Sugar products",
+
+varieties: [
+
+{
+name: "White Sugar",
+price: "₹50/kg",
+image: "images/white-sugar.png"
+},
+
+{
+name: "Brown Sugar",
+price: "₹100/kg",
+image: "images/brown-sugar.png"
+},
+
+{
+name: "Powdered Sugar",
+price: "₹60/kg",
+image: "images/powdered-sugar.png"
+}
+
+]
+
+},
+
+
+{
+name: "Cooking Oil",
+description: "Cooking oils",
+
+varieties: [
+
+{
+name: "Sunflower Oil",
+price: "₹160/litre",
+image: "images/sunflower-oil.png"
+},
+
+{
+name: "Soybean Oil",
+price: "₹145/litre",
+image: "images/soybean-oil.png"
+},
+
+{
+name: "Groundnut Oil",
+price: "₹190/litre",
+image: "images/groundnut-oil.png"
+},
+
+{
+name: "Mustard Oil",
+price: "₹175/litre",
+image: "images/mustard-oil.png"
+}
+
+]
+
+},
+
+
+{
+name: "Salt",
+description: "Different types of salt",
+
+varieties: [
+
+{
+name: "Iodized Salt",
+price: "₹25/kg",
+image: "images/iodized-salt.png"
+},
+
+{
+name: "Rock Salt",
+price: "₹50/kg",
+image: "images/rock-salt.png"
+},
+
+{
+name: "Table Salt",
+price: "₹22/kg",
+image: "images/table-salt.png"
+}
+
+]
+
+},
+
+
+{
+name: "Spices",
+description: "Popular cooking spices",
+
+varieties: [
+
+{
+name: "Turmeric Powder",
+price: "₹220/kg",
+image: "images/turmeric.png"
+},
+
+{
+name: "Red Chilli Powder",
+price: "₹260/kg",
+image: "images/chilli-powder.png"
+},
+
+{
+name: "Cumin Powder",
+price: "₹320/kg",
+image: "images/cumin-powder.png"
+},
+
+{
+name: "Garam Masala",
+price: "₹300/kg",
+image: "images/garam-masala.png"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+
+dairy: {
+
+title: "Dairy Products",
+
+products: [
+
+{
+name: "Milk",
+description: "Fresh milk products",
+
+varieties: [
+
+{
+name: "Full Cream Milk",
+price: "₹68/litre",
+image: "images/full-cream-milk.png"
+},
+
+{
+name: "Toned Milk",
+price: "₹58/litre",
+image: "images/toned-milk.png"
+}
+
+]
+
+},
+
+
+{
+name: "Butter",
+description: "Fresh butter",
+
+varieties: [
+
+{
+name: "Salted Butter",
+price: "₹58/100g",
+image: "images/salted-butter.png"
+},
+
+{
+name: "Unsalted Butter",
+price: "₹60/100g",
+image: "images/unsalted-butter.png"
+}
+
+]
+
+},
+
+
+{
+name: "Cheese",
+description: "Cheese products",
+
+varieties: [
+
+{
+name: "Cheese Slices",
+price: "₹120/200g",
+image: "images/cheese-slices.png"
+},
+
+{
+name: "Cheese Block",
+price: "₹150/200g",
+image: "images/cheese-block.png"
+}
+
+]
+
+},
+
+
+{
+name: "Curd",
+description: "Fresh curd",
+
+varieties: [
+
+{
+name: "Plain Curd",
+price: "₹40/400g",
+image: "images/plain-curd.png"
+},
+
+{
+name: "Low Fat Curd",
+price: "₹45/400g",
+image: "images/low-fat-curd.png"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+
+snacks: {
+
+title: "Snacks & Beverages",
+
+products: [
+
+{
+name: "Biscuits",
+description: "Tasty biscuits",
+
+varieties: [
+
+{
+name: "Cream Biscuits",
+price: "₹30/pack",
+image: "images/cream-biscuits.png"
+},
+
+{
+name: "Glucose Biscuits",
+price: "₹30/pack",
+image: "images/glucose-biscuits.png"
+},
+
+{
+name: "Cookies",
+price: "₹50/pack",
+image: "images/cookies.png"
+}
+
+]
+
+},
+
+
+{
+name: "Chips",
+description: "Crispy snacks",
+
+varieties: [
+
+{
+name: "Potato Chips",
+price: "₹20/pack",
+image: "images/potato-chips.png"
+},
+
+{
+name: "Masala Chips",
+price: "₹20/pack",
+image: "images/masala-chips.png"
+},
+
+{
+name: "Nachos",
+price: "₹40/pack",
+image: "images/nachos.png"
+}
+
+]
+
+},
+
+
+{
+name: "Juice",
+description: "Refreshing beverages",
+
+varieties: [
+
+{
+name: "Mango Juice",
+price: "₹40/pack",
+image: "images/mango-juice.png"
+},
+
+{
+name: "Orange Juice",
+price: "₹40/pack",
+image: "images/orange-juice.png"
+},
+
+{
+name: "Mixed Fruit Juice",
+price: "₹45/pack",
+image: "images/mixed-fruit-juice.png"
+}
+
+]
+
+},
+
+
+{
+name: "Chocolates",
+description: "Chocolate products",
+
+varieties: [
+
+{
+name: "Milk Chocolate",
+price: "₹40",
+image: "images/milk-chocolate.png"
+},
+
+{
+name: "Dark Chocolate",
+price: "₹80",
+image: "images/dark-chocolate.png"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+
+household: {
+
+title: "Household Items",
+
+products: [
+
+{
+name: "Cleaning Soap",
+description: "Cleaning products",
+
+varieties: [
+
+{
+name: "Dish Soap",
+price: "₹45",
+image: "images/dish-soap.png"
+},
+
+{
+name: "Laundry Soap",
+price: "₹30",
+image: "images/laundry-soap.png"
+}
+
+]
+
+},
+
+
+{
+name: "Broom",
+description: "Cleaning brooms",
+
+varieties: [
+
+{
+name: "Floor Broom",
+price: "₹90",
+image: "images/floor-broom.png"
+},
+
+{
+name: "Outdoor Broom",
+price: "₹120",
+image: "images/outdoor-broom.png"
+}
+
+]
+
+},
+
+
+{
+name: "Bucket",
+description: "Household buckets",
+
+varieties: [
+
+{
+name: "Plastic Bucket",
+price: "₹150",
+image: "images/plastic-bucket.png"
+},
+
+{
+name: "Small Bucket",
+price: "₹100",
+image: "images/small-bucket.png"
+}
+
+]
+
+},
+
+
+{
+name: "Detergent",
+description: "Laundry products",
+
+varieties: [
+
+{
+name: "Washing Powder",
+price: "₹120/kg",
+image: "images/washing-powder.png"
+},
+
+{
+name: "Liquid Detergent",
+price: "₹160/litre",
+image: "images/liquid-detergent.png"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+
+personal: {
+
+title: "Personal Care Products",
+
+products: [
+
+{
+name: "Toothpaste",
+description: "Daily oral care",
+
+varieties: [
+
+{
+name: "Regular Toothpaste",
+price: "₹55",
+image: "images/toothpaste.png"
+},
+
+{
+name: "Herbal Toothpaste",
+price: "₹70",
+image: "images/herbal-toothpaste.png"
+}
+
+]
+
+},
+
+
+{
+name: "Shampoo",
+description: "Hair care products",
+
+varieties: [
+
+{
+name: "Daily Use Shampoo",
+price: "₹120",
+image: "images/shampoo.png"
+},
+
+{
+name: "Anti-Dandruff Shampoo",
+price: "₹160",
+image: "images/anti-dandruff-shampoo.png"
+}
+
+]
+
+},
+
+
+{
+name: "Face Wash",
+description: "Face care products",
+
+varieties: [
+
+{
+name: "Gel Face Wash",
+price: "₹150",
+image: "images/gel-face-wash.png"
+},
+
+{
+name: "Herbal Face Wash",
+price: "₹140",
+image: "images/herbal-face-wash.png"
+}
+
+]
+
+},
+
+
+{
+name: "Body Lotion",
+description: "Body care products",
+
+varieties: [
+
+{
+name: "Moisturizing Lotion",
+price: "₹150",
+image: "images/body-lotion.png"
+},
+
+{
+name: "Daily Body Lotion",
+price: "₹120",
+image: "images/daily-body-lotion.png"
+}
+
+]
+
+}
+
+]
+
+}
+
+};
+
+
+
+function showCategory(category) {
+
+    const data = storeData[category];
+
+    document
+        .getElementById("homePage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("categoryPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("categoryTitle")
+        .textContent = data.title;
+
+    const container =
+        document.getElementById("categoryProducts");
+
+    container.innerHTML = "";
+
+
+    data.products.forEach(function(product, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+        card.onclick = function() {
+
+            showVarieties(category, index);
 
         };
 
 
-        function showCategory(category) {
+        card.innerHTML = `
 
-            const data = storeData[category];
+            <div class="big-icon">
+                🛍️
+            </div>
 
-            document.getElementById("homePage")
-                .classList.add("hidden");
+            <h3>
+                ${product.name}
+            </h3>
 
-            document.getElementById("categoryPage")
-                .classList.remove("hidden");
+            <p>
+                ${product.description}
+            </p>
 
-            document.getElementById("categoryTitle")
-                .textContent = data.title;
+            <strong>
+                View Products →
+            </strong>
 
-            const container =
-                document.getElementById("categoryProducts");
-
-            container.innerHTML = "";
-
-            data.products.forEach(function(product, index) {
-
-                const card = document.createElement("div");
-
-                card.className = "item-card";
-
-                card.onclick = function() {
-                    showSubProducts(category, index);
-                };
-
-                card.innerHTML = `
-                    <div class="item-icon">
-                        ${product.icon}
-                    </div>
-
-                    <h3>${product.name}</h3>
-
-                    <p>${product.description}</p>
-
-                    <p>
-                        <strong>
-                            Click to see varieties →
-                        </strong>
-                    </p>
-                `;
-
-                container.appendChild(card);
-
-            });
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
+        `;
 
 
-        function showSubProducts(category, index) {
+        container.appendChild(card);
 
-            const product =
-                storeData[category].products[index];
+    });
 
-            const container =
-                document.getElementById("categoryProducts");
-
-            document.getElementById("categoryTitle")
-                .textContent = product.name;
-
-            container.innerHTML = "";
-
-            product.subProducts.forEach(function(item) {
-
-                const card = document.createElement("div");
-
-                card.className = "item-card";
-
-                card.innerHTML = `
-                    <div class="item-icon">
-                        ${product.icon}
-                    </div>
-
-                    <h3>${item}</h3>
-
-                    <p>
-                        Available at My General Store
-                    </p>
-                `;
-
-                container.appendChild(card);
-
-            });
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
+    window.scrollTo(0,0);
+}
 
 
-        function goBack() {
 
-            document.getElementById("categoryPage")
-                .classList.add("hidden");
+function showVarieties(category, index) {
 
-            document.getElementById("homePage")
-                .classList.remove("hidden");
+    const product =
+        storeData[category].products[index];
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-  </script>
+    document
+        .getElementById("categoryTitle")
+        .textContent = product.name;
+
+
+    const container =
+        document.getElementById("categoryProducts");
+
+    container.innerHTML = "";
+
+
+    product.varieties.forEach(function(item) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <img
+                class="product-image"
+                src="${item.image}"
+                alt="${item.name}"
+            >
+
+            <h3>
+                ${item.name}
+            </h3>
+
+            <p>
+                ${product.description}
+            </p>
+
+            <div class="price">
+                ${item.price}
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+
+    window.scrollTo(0,0);
+}
+
+
+
+function goHome() {
+
+    document
+        .getElementById("categoryPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("homePage")
+        .classList.remove("hidden");
+
+    window.scrollTo(0,0);
+}
+
+</script>
+
 </body>
 </html>
